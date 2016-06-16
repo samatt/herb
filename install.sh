@@ -27,17 +27,18 @@ function herb_uninstall {
     rm -rf build
     cd tmp/swig-3.0.10
     make uninstall
+    cd ../..
+    rm -rf tmp
 }
 
-
-if [ "$1" = "install" ]              # Tested variable is quoted.
+if [ "$1" = "install" ]
 then
     command -v swig >/dev/null 2>&1 || { echo "I require swig but it's not installed. attempting to install." >&2; haz_swig; }
-     echo "Installing..." # install  # Need quotes to escape #
+     echo "Installing..."
      herb_install
 fi
 
-if [ "$1" = "uninstall" ]              # Tested variable is quoted.
+if [ "$1" = "uninstall" ]
 then
     echo "Uninstalling..."
     herb_uninstall
