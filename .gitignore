@@ -1,2 +1,3 @@
 .DS_Store
 node_modules
+c++/src/Herbivore_wrap.cxx
