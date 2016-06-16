@@ -1,13 +1,14 @@
 # export CSC_IDENTITY_AUTO_DISCOVERY=false
 function haz_swig {
     echo "Installing swig!"
-    # curl -L -o swig-3.0.10.tar.gz http://downloads.sourceforge.net/project/swig/swig/swig-3.0.10/swig-3.0.10.tar.gz
-    tar -xvzf swig-3.0.10.tar.gz
-    swig-3.0.10/configure
-    # make -C 'swig-3.0.10'
-    # cd "swig-3.0.10"
+    curl -L -o swig-3.0.10.tar.gz http://downloads.sourceforge.net/project/swig/swig/swig-3.0.10/swig-3.0.10.tar.gz
+    mkdir tmp
+    tar  -C tmp -xvzf swig-3.0.10.tar.gz
+    cd tmp/swig-3.0.10
+    ./configure
     make
-
+    make install
+    cd ../..
 }
 
 function herb_install {
@@ -24,14 +25,16 @@ function herb_install {
 
 function herb_uninstall {
     rm -rf build
+    cd tmp/swig-3.0.10
+    make uninstall
 }
 
 
 if [ "$1" = "install" ]              # Tested variable is quoted.
 then
     command -v swig >/dev/null 2>&1 || { echo "I require swig but it's not installed. attempting to install." >&2; haz_swig; }
-     # echo "Installing..." # install  # Need quotes to escape #
-     # herb_install
+     echo "Installing..." # install  # Need quotes to escape #
+     herb_install
 fi
 
 if [ "$1" = "uninstall" ]              # Tested variable is quoted.
