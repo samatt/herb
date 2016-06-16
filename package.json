@@ -1,0 +1,21 @@
+{
+  "name": "herbivore",
+  "version": "1.0.0",
+  "description": "A packet sniffing and crafting library. Built on libtins",
+  "main": "js/app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha tests/basic.test.js -w",
+    "install": "./install.sh install",
+    "uninstall": "rm -rf build"
+  },
+  "author": "Surya Mattu",
+  "license": "ISC",
+  "gypfile": true,
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}
