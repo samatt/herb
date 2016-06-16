@@ -9,7 +9,7 @@
   "scripts": {
     "test": "mocha tests/basic.test.js -w",
     "install": "./install.sh install",
-    "uninstall": "rm -rf build"
+    "uninstall": "./install.sh uninstall"
   },
   "author": "Surya Mattu",
   "license": "ISC",
