@@ -15,6 +15,7 @@
         "c++/src/Interface.cxx",
         "c++/src/HerbivoreUtils.cxx",
         "c++/src/HerbSniffer.cxx",
+        "c++/src/HerbParser.cxx",
         "c++/src/Herbivore_wrap.cxx"
     ],
     "include_dirs": [

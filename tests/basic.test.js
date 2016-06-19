@@ -44,9 +44,14 @@ describe('interface',() => {
 describe('sniffer',() => {
 
     let HerbSniffer = herbivore.HerbSniffer
-    var sniffer = new HerbSniffer()
-    // it('can run', () => {
-        sniffer.run()
-    // })
+    const sniffer = new HerbSniffer()
+    const sniffConfig = {iface:'en0',is_promisc:true,is_monitor:false};
+    sniffer.iface = sniffConfig.iface
+    sniffer.is_promisc = sniffConfig.is_promisc
+    sniffer.is_monitor = sniffConfig.is_monitor
+
+    it('can run', () => {
+        sniffer.run();
+    })
 
 })

@@ -1,8 +1,10 @@
 'use strict';
 const fs = require('fs');
-const child_process = require('child_process');
+// Create socket to listen to Sniffer messages.
+// TODO: Add callbacks to implement this. Don't want to deal with V8 rn
 const dgram = require('dgram')
-const udp = dgram.createSocket('udp4')
+const sniffReceiver = dgram.createSocket('udp4')
+const child_process = require('child_process');
 const sniffRunner = child_process.fork("./lib/sniffer.js");
 const sniffConfig = {iface:'en0',is_promisc:true,is_monitor:false};
 
@@ -10,10 +12,10 @@ function ab2str (buf) { return String.fromCharCode.apply(null, new Uint16Array(b
 
 sniffRunner.send({ config: sniffConfig, start:true });
 
-udp.on('error', (err) => { console.log('server error:\n' + err.stack); udp.close();})
+sniffReceiver.on('error', (err) => { console.log('server error:\n' + err.stack); sniffReceiver.close();})
 
-udp.on('message', (msg, rinfo) => {console.log(JSON.parse(ab2str(msg)))});
+sniffReceiver.on('message', (msg, rinfo) => {console.log(JSON.parse(ab2str(msg)))});
 
-udp.on('listening', () => { console.log(`server listening ${udp.address().address} : ${udp.address().port}` );});
+sniffReceiver.on('listening', () => { console.log(`server listening ${sniffReceiver.address().address} : ${sniffReceiver.address().port}` );});
 
-udp.bind(8080)
+sniffReceiver.bind(8080)

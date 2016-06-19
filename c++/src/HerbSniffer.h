@@ -2,6 +2,7 @@
 #define HERBSNIFFER_H
 using namespace std;
 #include "tins/tins.h"
+#include "HerbParser.h"
 #include "HerbivoreUtils.h"
 #include <string>
 #include <map>
@@ -14,12 +15,15 @@ public:
     HerbSniffer(std::string iface, bool is_promisc, bool is_monitor);
     void run();
 
+
 protected:
     Tins::SnifferConfiguration config;
     std::string iface;
-    static bool doo(Tins::PDU &some_pdu);
     bool is_promisc;
     bool is_monitor;
+
+    static bool doo(Tins::PDU &some_pdu);
+    static Tins::RawPDU::payload_type get_raw_payload(Tins::PDU &pdu);
 };
 
 #endif
