@@ -3,3 +3,4 @@ node_modules
 c++/src/Herbivore_wrap.cxx
 build
 tmp
+c++/lib/pkgconfig
