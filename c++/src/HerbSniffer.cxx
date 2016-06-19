@@ -6,13 +6,19 @@ bool HerbSniffer::doo(Tins::PDU &pdu) {
             if(ip == NULL || tcp == NULL){
                 return true;
             }
+
             uint16_t srcPort = tcp->sport();
+            uint16_t dstPort = tcp->dport();
             std::string  srcIp = ip->src_addr().to_string();
             std::string  dstIp = ip->dst_addr().to_string();
-            uint16_t dstPort = tcp->dport();
-            std::stringstream ss;
-            ss<<srcIp<< " - "<<srcPort<<" -- "<<dstIp<<" - "<<dstPort<<std::endl;
-            send_packet(ss.str());
+
+            std::map <string, string> p_info;
+            p_info["s_ip"] = srcIp;
+            p_info["d_ip"] = dstIp;
+            p_info["s_prt"] = std::to_string(srcPort);
+            p_info["d_prt"] = std::to_string(dstPort);
+            // std::cout<<to_json(p_info)<<std::endl;
+            send_packet(to_json(p_info));
     return true;
 }
 
