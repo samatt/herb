@@ -1,6 +1,6 @@
 let expect = require('chai').expect
 let herbivore = require('../build/Release/herbivore')
-let helper = require('../js/herb-helper')
+let helper = require('../lib/herb-helper')
 
 describe('interface',() => {
 
@@ -39,4 +39,14 @@ describe('interface',() => {
             expect(iface.ip).to.oneOf(['127.0.0.1','0.0.0.0'])
         }
     })
+})
+
+describe('sniffer',() => {
+
+    let HerbSniffer = herbivore.HerbSniffer
+    var sniffer = new HerbSniffer()
+    // it('can run', () => {
+        sniffer.run()
+    // })
+
 })

@@ -13,9 +13,10 @@ namespace std {
 
 %{
 #include "Interface.h"
+#include "HerbSniffer.h"
 #include "HerbivoreUtils.h"
 %}
-
+%include "HerbSniffer.h"
 %include "Interface.h"
 %include "HerbivoreUtils.h"
 

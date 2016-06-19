@@ -14,13 +14,14 @@
     "sources": [
         "c++/src/Interface.cxx",
         "c++/src/HerbivoreUtils.cxx",
+        "c++/src/HerbSniffer.cxx",
         "c++/src/Herbivore_wrap.cxx"
     ],
     "include_dirs": [
         "/Users/surya/Documents/Projects/Herbivore/c++/include"
     ],
     "libraries": [
-        '/Users/surya/Documents/Projects/Herbivore/c++/lib/osx/libtins.a', '-ltins', '-lpthread'
+        '/Users/surya/Documents/Projects/Herbivore/c++/lib/libtins.a', '-ltins', '-lpthread'
     ]
    }]
  }

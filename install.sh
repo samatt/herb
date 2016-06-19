@@ -17,7 +17,7 @@ function herb_install {
     BUILD="build/Release/Herbivore.node"
     swig -c++ -javascript -node -DV8_VERSION=0x050071 $SRC && node-gyp configure rebuild && node-gyp configure rebuild
     if [ $? -eq 0 ]; then
-        echo "Compiled swig succesfully"
+        echo "Compiled succesfully"
     else
         echo "Some error, make sure swig is installed."
     fi

@@ -4,7 +4,6 @@
 Interface::Interface(){
     all = Tins::NetworkInterface::all();
     for (const Tins::NetworkInterface& iface: Tins::NetworkInterface::all()){
-
     }
 }
 
