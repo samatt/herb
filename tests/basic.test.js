@@ -1,6 +1,7 @@
 let expect = require('chai').expect
 let herbivore = require('../build/Release/herbivore')
 let helper = require('../lib/herb-helper')
+let TransportSniffer = require('../lib/sniffer')
 
 describe('interface',() => {
 
@@ -43,15 +44,23 @@ describe('interface',() => {
 
 describe('sniffer',() => {
 
-    let HerbSniffer = herbivore.HerbSniffer
-    const sniffer = new HerbSniffer()
-    const sniffConfig = {iface:'en0',is_promisc:true,is_monitor:false};
-    sniffer.iface = sniffConfig.iface
-    sniffer.is_promisc = sniffConfig.is_promisc
-    sniffer.is_monitor = sniffConfig.is_monitor
+    const sniffer = new TransportSniffer()
+    num_packets = 0
+    killed = false
+    it('can sniff', () => {
+      sniffer.on('packet', (d) => {
+        if(num_packets <2){
+          console.log(d);
+          num_packets += 1
+        }
+        else{
+          if(!killed){
+            killed =true
+            console.log('Killing');
+            sniffer.kill()
+          }
 
-    it('can run', () => {
-        sniffer.run();
+        }
+      })
     })
-
 })
