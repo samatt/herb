@@ -29,23 +29,25 @@ void HerbSniffer::run() {
 }
 
 bool HerbSniffer::doo(Tins::PDU &pdu) {
-            HerbParser parser = HerbParser();
-            Tins::IP *ip = pdu.find_pdu<Tins::IP>();
-            Tins::TCP *tcp = pdu.find_pdu<Tins::TCP>();
-            if(ip == NULL || tcp == NULL){
-                return true;
-            }
+    try{
+        HerbParser parser = HerbParser();
+        Tins::IP *ip = pdu.find_pdu<Tins::IP>();
+        Tins::TCP *tcp = pdu.find_pdu<Tins::TCP>();
+        if(ip == NULL || tcp == NULL){
+            return true;
+        }
 
-            uint16_t srcPort = tcp->sport();
-            uint16_t dstPort = tcp->dport();
-            std::string  srcIp = ip->src_addr().to_string();
-            std::string  dstIp = ip->dst_addr().to_string();
+        uint16_t srcPort = tcp->sport();
+        uint16_t dstPort = tcp->dport();
+        std::string  srcIp = ip->src_addr().to_string();
+        std::string  dstIp = ip->dst_addr().to_string();
 
-            std::map <string, string> p_info;
-            p_info["s_ip"] = srcIp;
-            p_info["d_ip"] = dstIp;
-            p_info["s_prt"] = std::to_string(srcPort);
-            p_info["d_prt"] = std::to_string(dstPort);
+        std::map <string, string> p_info;
+        p_info["s_ip"] = srcIp;
+        p_info["d_ip"] = dstIp;
+        p_info["s_prt"] = std::to_string(srcPort);
+        p_info["d_prt"] = std::to_string(dstPort);
+        cout<<p_info["s_ip"]<<","<<p_info["d_ip"]<<","<<p_info["s_prt"]<<","<<p_info["d_prt"]<<endl;
             // cout<<dstPort<<endl;
             // if(dstPort == 80 ){
 
@@ -54,6 +56,12 @@ bool HerbSniffer::doo(Tins::PDU &pdu) {
             //     // p_info["payload"] = parser.parse_http(payload);
 
             // }
-            send_packet(to_json(p_info));
-    return true;
+        // send_packet(to_json(p_info));
+        return true;
+    }
+    catch(...){
+        std::cout<<"SOME ERROR"<<std::endl;
+        return false;
+    }
+
 }
