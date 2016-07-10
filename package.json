@@ -2,7 +2,7 @@
   "name": "herbivore",
   "version": "1.0.0",
   "description": "A packet sniffing and crafting library. Built on libtins",
-  "main": "js/app.js",
+  "main": "indx.js",
   "directories": {
     "test": "tests"
   },
