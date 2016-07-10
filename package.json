@@ -12,7 +12,11 @@
     "uninstall": "./install.sh uninstall"
   },
   "author": "Surya Mattu",
-  "license": "ISC",
+  "repository" : {
+   "type" : "git",
+   "url" : "https://github.com/samatt/Herbivore"
+  },
+  "license": "MIT",
   "gypfile": true,
   "devDependencies": {
     "chai": "^3.5.0",
