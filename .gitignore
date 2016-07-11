@@ -5,3 +5,4 @@ build
 tmp
 c++/lib/pkgconfig
 c++/bin/*
+bin
