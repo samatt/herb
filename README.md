@@ -9,8 +9,6 @@ This project is a work in progress. It is built on top of [Libtins](http://libti
  * `npm install`
  
  * `npm test`
- 
- * `./install.sh uninstall`. (Im being stupid right now)
 
 
 
