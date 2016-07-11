@@ -1,18 +1,32 @@
-CC=g++
-CFLAGS=-c -Wall -Iinclude/ -std=c++11
-.SUFFIXES: .cxx .cpp
-LDFLAGS=-lpthread -ltins -lpcap -Llib/
-SOURCES=src/main.cxx src/HerbivoreUtils.cxx src/HerbParser.cxx  src/HerbSniffer.cxx
-OBJECTS=$(SOURCES:.cxx=.o)
-EXECUTABLE=bin/herb_commands
+MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
+CURRENT_DIR := $(notdir $(patsubst %/,%,$(dir $(MAKEFILE_PATH))))
+SRC_FOLDER= $(dir $(MAKEFILE_PATH))src/
+INCLUDE_FOLDER= $(dir $(MAKEFILE_PATH))include/
+LIB_FOLDER= $(dir $(MAKEFILE_PATH))lib/
+BIN_FOLDER= $(dir $(MAKEFILE_PATH))bin/
 
-all: $(SOURCES) $(EXECUTABLE)
+CC=g++
+CFLAGS=-c -Wall -I$(INCLUDE_FOLDER) -std=c++11
+.SUFFIXES: .cxx .cpp
+LDFLAGS=-lpthread -ltins -lpcap -L$(LIB_FOLDER)
+
+SOURCES=$(SRC_FOLDER)main.cxx $(SRC_FOLDER)HerbivoreUtils.cxx $(SRC_FOLDER)HerbParser.cxx  $(SRC_FOLDER)HerbSniffer.cxx
+OBJECTS=$(SOURCES:.cxx=.o)
+EXECUTABLE=$(BIN_FOLDER)/herb_commands
+
+
+
+all: $(SOURCES) $(EXECUTABLE) $(SRC_FOLDER)Herbivore_wrap.cxx
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+
+$(SRC_FOLDER)Herbivore_wrap.cxx:$(SRC_FOLDER)Herbivore.i
+	swig -c++ -javascript -node -DV8_VERSION=0x050071 $(SRC_FOLDER)Herbivore.i
 
 .cxx.o:
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
 	rm $(EXECUTABLE) $(OBJECTS)
+	rm $(SRC_FOLDER)Herbivore_wrap.cxx

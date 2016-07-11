@@ -1,7 +1,5 @@
-let InterfaceUtils = require('./build/Release/herbivore')
-let Helper = require('./lib/herb-helper')
-let TransportSniffer = require('./lib/sniffer')
+let TransportSniffer = require('./lib/TransportSniffer')
+let InterfaceManager = require('./lib/InterfaceManager')
 
-module.exports.InterfaceUtils = InterfaceUtils
-module.exports.Helper = Helper
+module.exports.InterfaceManager = InterfaceManager
 module.exports.TransportSniffer = TransportSniffer

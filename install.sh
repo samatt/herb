@@ -12,12 +12,20 @@ function haz_swig {
 }
 
 function herb_install {
-    SRC_FOLDER="c++/src"
-    SRC=$SRC_FOLDER"/Herbivore.i"
-    BUILD="build/Release/Herbivore.node"
-    swig -c++ -javascript -node -DV8_VERSION=0x050071 $SRC && node-gyp configure rebuild && node-gyp configure rebuild
+    if [ ! -d "$/bin" ]; then
+        mkdir bin
+      # Control will enter here if $DIRECTORY doesn't exist.
+    fi
+    # SRC_FOLDER="c++/src"
+    # SRC=$SRC_FOLDER"/Herbivore.i"
+    # BUILD="build/Release/Herbivore.node"
+    # swig -c++ -javascript -node -DV8_VERSION=0x050071 $SRC
+    make -f c++/Makefile && node-gyp configure rebuild && node-gyp configure rebuild
     if [ $? -eq 0 ]; then
         echo "Compiled succesfully"
+        cp build/Release/Herbivore.node bin/
+        cp -R c++/bin/* bin/
+        rm -rf config.log
     else
         echo "Some error, make sure swig is installed."
     fi
@@ -25,6 +33,7 @@ function herb_install {
 
 function herb_uninstall {
     rm -rf build
+    rm -rf bin
     cd tmp/swig-3.0.10
     make uninstall
     cd ../..
