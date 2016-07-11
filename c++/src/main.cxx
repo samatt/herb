@@ -12,7 +12,6 @@ int main(int argc, char *argv[]){
     cout<<"usage: "<< argv[0] <<" <command>\n";
   }
   else {
-    // cout<<"Trying command: "<<string(argv[1])<<endl;
     if (string(argv[1]) == "sniffer"){
       HerbSniffer sniffer = HerbSniffer();
       sniffer.run();

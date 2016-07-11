@@ -12,14 +12,9 @@ function haz_swig {
 }
 
 function herb_install {
-    if [ ! -d "$/bin" ]; then
+    if [ ! -d "bin" ]; then
         mkdir bin
-      # Control will enter here if $DIRECTORY doesn't exist.
     fi
-    # SRC_FOLDER="c++/src"
-    # SRC=$SRC_FOLDER"/Herbivore.i"
-    # BUILD="build/Release/Herbivore.node"
-    # swig -c++ -javascript -node -DV8_VERSION=0x050071 $SRC
     make -f c++/Makefile && node-gyp configure rebuild && node-gyp configure rebuild
     if [ $? -eq 0 ]; then
         echo "Compiled succesfully"
