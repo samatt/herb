@@ -2,7 +2,7 @@
   "name": "herbivore",
   "version": "0.0.3",
   "description": "A packet sniffing and crafting library. Built on libtins",
-  "main": "indx.js",
+  "main": "herbivore.js",
   "directories": {
     "test": "tests"
   },
@@ -12,9 +12,9 @@
     "uninstall": "./install.sh uninstall"
   },
   "author": "Surya Mattu",
-  "repository" : {
-   "type" : "git",
-   "url" : "https://github.com/samatt/Herbivore"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samatt/Herbivore"
   },
   "license": "MIT",
   "gypfile": true,
@@ -23,6 +23,8 @@
     "mocha": "^2.5.3"
   },
   "dependencies": {
+    "node-arp": "^1.0.5",
+    "promise": "^7.1.1",
     "underscore": "^1.8.3"
   }
 }

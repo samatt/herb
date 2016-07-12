@@ -1,6 +1,7 @@
 let expect = require('chai').expect
 let InterfaceManager = require('../lib/InterfaceManager')
 let TransportSniffer = require('../lib/TransportSniffer')
+let Arp = require('../lib/Arp')
 
 describe('interface', () => {
   let ifconfig = new InterfaceManager()
@@ -48,5 +49,16 @@ describe('sniffer', () => {
     sniffer.on('packet', (d) => {
       expect(Object.keys(d).length).equals(4)
     })
+  })
+})
+
+describe('arp', () => {
+  Arp.getMacFromIPs(['192.168.0.1', '192.168.0.2', '192.168.0.100']).done(function (results) {
+    it('correct packet size', () => {
+      expect(Object.keys(results).length).equals(3)
+    })
+    console.log(results)
+  }, function (err) {
+    if (err) console.log(err)
   })
 })
