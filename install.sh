@@ -1,7 +1,7 @@
 # export CSC_IDENTITY_AUTO_DISCOVERY=false
 function haz_swig {
     echo "Installing swig!"
-    curl -L -o swig-3.0.10.tar.gz http://downloads.sourceforge.net/project/swig/swig/swig-3.0.10/swig-3.0.10.tar.gz
+    curl -L -o swig-3.0.10.tar.gz https://downloads.sourceforge.net/project/swig/swig/swig-3.0.10/swig-3.0.10.tar.gz
     mkdir tmp
     tar  -C tmp -xvzf swig-3.0.10.tar.gz
     cd tmp/swig-3.0.10
